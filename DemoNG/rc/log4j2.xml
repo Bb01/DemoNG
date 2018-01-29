@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This is the runtime config file for the log4j component -->
+
+<Configuration status="WARN">
+  <Appenders>
+    <Console name="STDOUT" target="SYSTEM_OUT">
+    <!--
+    %d = datetime
+    %-5p = priority in a 5 char wide field, right justified with spaces
+    %t = the thread
+    %F = the file name
+    %L = the line number within %F
+    %m = the message
+    %n = platform dependent line separator
+    -->
+      <PatternLayout pattern="%d [%-5p] [%t] (%F:%L) - %m%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Logger name="org.bbswd.scouts" level="TRACE"/>
+    <Root level="TRACE">
+      <AppenderRef ref="STDOUT"/>
+    </Root>
+  </Loggers>
+</Configuration>
