@@ -3,3 +3,4 @@
 /lib/
 .settings
 /src/resources/config.properties
+*~
