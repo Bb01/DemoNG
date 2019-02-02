@@ -1,5 +1,3 @@
-//Bb made a simple change
-
 package org.bbswd.gui;
 
 import java.awt.BorderLayout;
