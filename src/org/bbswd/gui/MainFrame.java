@@ -32,7 +32,14 @@ import org.apache.logging.log4j.Logger;
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 12345L;
-	private String resources = "resources/config.properties";
+	
+	/*
+	 * For the config.properties to be picked up at runtime, the resources
+	 * folder (where its stored along with other application resources), must be in 
+	 * classpath at runtime.
+	 * eclipse/project/properties/Java Build Path/Libraries/Add Class Path.../
+	 */
+	private String resources = "config.properties";
 	private InputStream inputS = MainFrame.class.getClassLoader().getResourceAsStream(resources);
 	Properties props = new Properties();
 

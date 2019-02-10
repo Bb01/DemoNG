@@ -29,16 +29,16 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * Display a modal dialog box with details of the application.
- * These details include:
+ * 
+ * <p>
+ * The details displayed include:
  * 
  * <ol>
  * <li>Copyright</li>
  * <li>Logo</li>
  * <li>URL to web site</li>
  * <li>Version</li>
- * <li>OK/Close</li>
  * </ol>
- * 
  * 
  */
 
@@ -48,10 +48,8 @@ public class AboutGUI extends JFrame {
 
 	private static final Logger aboutGUILog = LogManager.getLogger(AboutGUI.class.getName());
 	private JPanel contentPane;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
+
+	public static void main() {
 		
 		EventQueue.invokeLater(new Runnable() {
 			@Override

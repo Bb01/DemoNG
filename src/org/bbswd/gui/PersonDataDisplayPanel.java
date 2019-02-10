@@ -19,9 +19,12 @@ import org.bbswd.model.Database;
 import org.bbswd.model.Person;
 
 /**
- * This is a GUI object used to display Person objects in tabular form. Its a
+ * This is a GUI object used to display Person objects in tabular form.
+ * 
+ * <p>
+ * Its a
  * panel that contains a scrollable table. The table has the headers "id",
- * "fname", "lname", "mname", "alias" & "title".
+ * "fname", "lname", "mname", "alias" and "title".
  * 
  * The panel has horizontal and vertical scroll bars.
  */
