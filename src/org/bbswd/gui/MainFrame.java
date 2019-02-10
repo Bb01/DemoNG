@@ -27,6 +27,10 @@ import org.apache.logging.log4j.Logger;
 /**
  * @author Bb
  * @version v1.0a
+ * 
+ * This is what we are trying to build:
+ * <p><img src="doc-files/MainFrameGUIScreenLayout.png" alt="MainFrameGUIScreenLayout">
+ * <p>Hope you like the images.
  *
  */
 public class MainFrame extends JFrame {
