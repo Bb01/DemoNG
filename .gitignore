@@ -1,6 +1,15 @@
+
+# These folders are ignored, because they don't contain source.
+# Their contents are either available system wide/or on the 
+# network someplace (eg lib) or can be regenerated (eg doc, bin).
 /bin/
 /doc/
 /lib/
+
 .settings
-/src/resources/config.properties
+
+# The real application config.properties file is ignored because it may 
+# contain information that you don't want checked into GitHub 
+# (eg usernames and passwords etc).
+/resources/config.properties
 *~

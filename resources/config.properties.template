@@ -1,0 +1,19 @@
+# This is a list of all the application properties for DemoNG.
+# Each one has an explanation and a sample format/example.
+
+# The location/name of the database with the application data.
+# In this case, its hosted locally, but the "localhost" can be replaced by an IP or host name.
+# Its on port 3306 (MySQL/MariaDB).
+# The database name must be supplied, but its usuall something like: "MyDatabase" - ie remove the angle brackets.
+jdbc.url="jdbc:mysql://localhost:3306/<database name>"
+
+# Put in the name of the user that you have configured for the application.
+# In this case, I am using a non-admin user "demong".
+jdbc.username="demong"
+
+# Put in the password for the demong username.
+# Do I need to point out that putting in a real admin username and password is a bad idea! 
+jdbc.password="secret"
+
+# The name of the application appears in the title bar.
+title=Application Main Window
