@@ -59,7 +59,7 @@ public class MainFrame extends JFrame {
 	 * Launch the application.
 	 * 
 	 * @param args
-	 *            An array os String with arguments passed in from
+	 *            An array of String with arguments passed in from
 	 *            the JVM.
 	 */
 	public static void main(String[] args) {
@@ -106,9 +106,9 @@ public class MainFrame extends JFrame {
 		 * Change icon from (default) Java Coffee Cup to custom value. Check if
 		 * the file exists. If it exists then open it an apply to the frame.
 		 */
-		File f = new File("./rc/image-32x32.gif");
+		File f = new File("./resources/image-32x32.gif"); // TODO: switch to resource reference
 		if (f.exists() && !f.isDirectory()) {
-			setIconImage(new ImageIcon("./rc/image-32x32.gif").getImage());
+			setIconImage(new ImageIcon("./resources/image-32x32.gif").getImage());
 		}
 
 		menuBar = new MenuBar();
