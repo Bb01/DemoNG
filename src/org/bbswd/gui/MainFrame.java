@@ -31,7 +31,12 @@ import org.apache.logging.log4j.Logger;
  * This is what we are trying to build:
  * <p><img src="doc-files/MainFrameGUIScreenLayout.png" alt="MainFrameGUIScreenLayout">
  * <p>Hope you like the images.
- *
+ * 
+ * Mainframe is the container widget for the application GUI. Its composed of distinct areas:
+ * <ol>
+ * <li>Menu bar at the top, under the title</li>
+ * <li>MainPanel</li>
+ * </ol>
  */
 public class MainFrame extends JFrame {
 
@@ -98,9 +103,9 @@ public class MainFrame extends JFrame {
 		System.out.println(props.getProperty("title"));
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Application Main Window");
-		setLocation(100, 100);
-		setMinimumSize(new Dimension(450, 500));
+		setTitle(props.getProperty("title"));
+		setLocation(100, 100); // TODO: externalize via resource reference
+		setMinimumSize(new Dimension(450, 500)); // TODO: externalize via resource reference
 
 		/*
 		 * Change icon from (default) Java Coffee Cup to custom value. Check if
