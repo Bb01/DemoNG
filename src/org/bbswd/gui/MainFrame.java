@@ -13,9 +13,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -25,8 +22,7 @@ import org.apache.logging.log4j.Logger;
 
 
 /**
- * @author Bb
- * @version v1.0a
+ * Start here!
  * 
  * This is what we are trying to build:
  * <p><img src="doc-files/MainFrameGUIScreenLayout.png" alt="MainFrameGUIScreenLayout">
@@ -41,7 +37,6 @@ import org.apache.logging.log4j.Logger;
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 12345L;
-	
 	/*
 	 * For the config.properties to be picked up at runtime, the resources
 	 * folder (where its stored along with other application resources), must be in 
@@ -55,6 +50,7 @@ public class MainFrame extends JFrame {
 	private JPanel mainPanel;
 	private ToolBarPanel toolBarPanel;
 	private PersonPanel personPanel;
+	private ClubPanel clubPanel;
 
 	private MenuBar menuBar;
 
@@ -83,6 +79,9 @@ public class MainFrame extends JFrame {
 
 	/**
 	 * Create the main frame for the application window.
+	 * The main frame is going to contain:
+	 * + Menubar
+	 * + Main Panel (this in turn gets broken into 3 x subpanels)
 	 */
 	public MainFrame() {
 		mainFrameLog.trace("MainFrame() Entering.");
@@ -101,7 +100,6 @@ public class MainFrame extends JFrame {
 		System.out.println(props.getProperty("jdbc.username"));
 		System.out.println(props.getProperty("jdbc.password"));
 		System.out.println(props.getProperty("title"));
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(props.getProperty("title"));
 		setLocation(100, 100); // TODO: externalize via resource reference
@@ -109,21 +107,25 @@ public class MainFrame extends JFrame {
 
 		/*
 		 * Change icon from (default) Java Coffee Cup to custom value. Check if
-		 * the file exists. If it exists then open it an apply to the frame.
+		 * the file exists. If it exists then open it and apply to the frame.
 		 */
 		File f = new File("./resources/image-32x32.gif"); // TODO: switch to resource reference
 		if (f.exists() && !f.isDirectory()) {
 			setIconImage(new ImageIcon("./resources/image-32x32.gif").getImage());
 		}
 
+
 		menuBar = new MenuBar();
 		setJMenuBar(menuBar.get());
 
 		/*
 		 * The mainPanel is going to contain (from top to bottom):
-		 * + Toolbar
-		 * + A panel to allow data to be entered (with labels, text fields and OK/Cancel)
-		 * + A panel to display entered data (a scrolled table)
+		 * + Object Toolbar - This selects the object to be worked on (eg Person, 
+		 *   Club, Pitch, Fixture, etc)
+		 * + A panel to allow data to be entered for the select object (with labels, 
+		 *   text fields and OK/Cancel)
+		 * + A panel that displays (in a scrolled table) data for the object selected 
+		 *   in the "Object Toolbar"
 		 */
 		mainPanel = new JPanel();
 		setContentPane(mainPanel);
@@ -192,16 +194,25 @@ public class MainFrame extends JFrame {
 		toolBarPanel = new ToolBarPanel();
 		mainPanel.add(toolBarPanel, gbc);
 
-		/*
-		 * Whatever is placed here, in the mainPanel, is driven by what type of
-		 * object is selected in the Toolbar. In the future, the default object
-		 * should be displayed. For now, its a "Person" object that the user
-		 * sees/operates on by default.
-		 */
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		personPanel = new PersonPanel();
-		mainPanel.add(personPanel, gbc);
+
+		switch (toolBarPanel.getDefPanel()) {
+		case PERSON :
+			personPanel = new PersonPanel();
+			mainPanel.add(personPanel, gbc);
+			break;
+		case CLUB :
+			clubPanel = new ClubPanel();
+			mainPanel.add(clubPanel, gbc);
+			break;
+		case PITCH :
+			break;
+		case FIXTURE :
+			break;
+		default :
+			System.out.println("oops!");
+		}
 
 		pack();
 		setVisible(true);

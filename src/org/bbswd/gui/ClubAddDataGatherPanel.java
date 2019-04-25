@@ -16,7 +16,7 @@ import javax.swing.JTabbedPane;
 
 import org.bbswd.controller.Controller;
 import org.bbswd.model.Database;
-import org.bbswd.model.Person;
+import org.bbswd.model.Club;
 
 /**
  * A simple GUI element composed of 2 basic widgets:
@@ -34,33 +34,33 @@ import org.bbswd.model.Person;
  * last thing to be done is that the parent is notified that the data has been
  * gathered, validated and added to the database. This is handled using a form
  * listener. That is, a listener (usually provided by the parent, in this case
- * the "PersonPanel") is invoked.
+ * the "ClubPanel") is invoked.
  * 
  * @author brian
  *
  */
-public class PersonAddDataGatherPanel extends JPanel implements ActionListener {
+public class ClubAddDataGatherPanel extends JPanel implements ActionListener {
 
 	static final long serialVersionUID = 12345L;
 
-	private JTabbedPane personTabbedPane;
-	private JPanel personAddPanel;
-	private JPanel personChangePanel;
-	private JPanel personDeletePanel;
-	private PersonAddDataEntryPanel personAddDataEntryPanel;
-	private PersonOKResetPanel oKResetPanel;
+	private JTabbedPane clubTabbedPane;
+	private JPanel clubAddPanel;
+	private JPanel clubChangePanel;
+	private JPanel clubDeletePanel;
+	private ClubAddDataEntryPanel clubAddDataEntryPanel;
+	private ClubOKResetPanel oKResetPanel;
 
 	private GridBagLayout gbl;
 	private GridBagConstraints gbc;
 
-	private PersonAddDataListener personAddDataListener;
-	private PersonAddResetListener personAddResetListener;
-	private Person person;
-	private PersonAddFormListener personAddFormListener;
+	private ClubAddDataListener clubAddDataListener;
+	private ClubAddResetListener clubAddResetListener;
+	private Club club;
+	private ClubAddFormListener clubAddFormListener;
 
-	public PersonAddDataGatherPanel(Database database) {
+	public ClubAddDataGatherPanel(Database database) {
 
-		setBorder(BorderFactory.createTitledBorder("PersonDataGatherPanel"));
+		setBorder(BorderFactory.createTitledBorder("ClubDataGatherPanel"));
 
 		gbl = new GridBagLayout();
 		gbl.columnWidths = new int[] { 0 };
@@ -77,33 +77,33 @@ public class PersonAddDataGatherPanel extends JPanel implements ActionListener {
 		gbc.weighty = (double) 1.0;
 		gbc.fill = GridBagConstraints.BOTH;
 
-		personTabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		add(personTabbedPane, gbc);
+		clubTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		add(clubTabbedPane, gbc);
 
-		personAddPanel = new JPanel();
-		personTabbedPane.addTab("Add", null, personAddPanel, null);
-		personChangePanel = new JPanel();
-		personTabbedPane.addTab("Change", null, personChangePanel, null);
-		personDeletePanel = new JPanel();
-		personTabbedPane.addTab("Delete", null, personDeletePanel, null);
+		clubAddPanel = new JPanel();
+		clubTabbedPane.addTab("Add", null, clubAddPanel, null);
+		clubChangePanel = new JPanel();
+		clubTabbedPane.addTab("Change", null, clubChangePanel, null);
+		clubDeletePanel = new JPanel();
+		clubTabbedPane.addTab("Delete", null, clubDeletePanel, null);
 
 		GridBagLayout gbla = new GridBagLayout();
 		gbla.columnWidths = new int[] { 1 };
 		gbla.rowHeights = new int[] { 0 };
 		gbla.columnWeights = new double[] { 1.0 };
 		gbla.rowWeights = new double[] { 0.0 };
-		personAddPanel.setLayout(gbla);
+		clubAddPanel.setLayout(gbla);
 
 		gbc.weightx = (double) 1.0;
 		gbc.weighty = (double) 1.0;
 		gbc.fill = GridBagConstraints.BOTH;
-		personAddDataEntryPanel = new PersonAddDataEntryPanel();
-		JScrollPane scrollPane = new JScrollPane(personAddDataEntryPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		clubAddDataEntryPanel = new ClubAddDataEntryPanel();
+		JScrollPane scrollPane = new JScrollPane(clubAddDataEntryPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setBorder(null);
-		personAddPanel.add(scrollPane, gbc);
+		clubAddPanel.add(scrollPane, gbc);
 
-		setPersonAddDataListener(new PersonAddDataListener() {
+		setClubAddDataListener(new ClubAddDataListener() {
 			private String fname;
 			private String lname;
 			private String mname;
@@ -112,29 +112,29 @@ public class PersonAddDataGatherPanel extends JPanel implements ActionListener {
 
 			/*
 			 * This method is called when the user enters data about a new
-			 * person and then selects some sort of OK/Submit/Confirm action.
+			 * club and then selects some sort of OK/Submit/Confirm action.
 			 * 
 			 * It will fetch the data entered (it knows the data is within the
-			 * PersonDataEntryPanel object) and then validates each one in turn.
-			 * If all is good, the data is assembled into a "Person" object and
+			 * ClubDataEntryPanel object) and then validates each one in turn.
+			 * If all is good, the data is assembled into a "Club" object and
 			 * added to the database.
 			 * 
 			 * (non-Javadoc)
 			 * 
-			 * @see org.bbswd.gui.PersonAddDataListener#personAddDataEntered()
+			 * @see org.bbswd.gui.ClubAddDataListener#clubAddDataEntered()
 			 */
-			public void personAddDataEntered() {
+			public void clubAddDataEntered() {
 
 				/**
 				 * At this point I think what should happen is:
 				 * 
 				 * <ol>
-				 * <li>Validate the Person returned</li>
-				 * <li>If the person is valid, add to a global list.</li>
-				 * <li>If the person is valid, add to the display panel.</li>
-				 * <li>If the person is valid, maybe center/highlight the person
+				 * <li>Validate the Club returned</li>
+				 * <li>If the club is valid, add to a global list.</li>
+				 * <li>If the club is valid, add to the display panel.</li>
+				 * <li>If the club is valid, maybe center/highlight the club
 				 * added in the display panel.</li>
-				 * <li>If the person is invalid, display (a series of?) dialog
+				 * <li>If the club is invalid, display (a series of?) dialog
 				 * box(es) showing reasons why its invalid.</li>
 				 * </ol>
 				 */
@@ -149,7 +149,7 @@ public class PersonAddDataGatherPanel extends JPanel implements ActionListener {
 				boolean result = false;
 				boolean allGood = true;
 
-				fname = personAddDataEntryPanel.getFirstName();
+				fname = clubAddDataEntryPanel.getFirstName();
 				result = controller.constraintCheck(Controller.FIRSTNAME_OPTIONAL, Controller.MIN_FIRSTNAME_LEN,
 						Controller.MAX_FIRSTNAME_LEN, Controller.FIRSTNAME_REGEX, fname, sb_fname, issueList);
 				if (result == false) {
@@ -157,7 +157,7 @@ public class PersonAddDataGatherPanel extends JPanel implements ActionListener {
 				}
 				handleResult("First Name", fname, issueList);
 
-				lname = personAddDataEntryPanel.getLastName();
+				lname = clubAddDataEntryPanel.getLastName();
 				result = controller.constraintCheck(Controller.LASTNAME_OPTIONAL, Controller.MIN_LASTNAME_LEN,
 						Controller.MAX_LASTNAME_LEN, Controller.LASTNAME_REGEX, lname, sb_lname, issueList);
 				if (result == false) {
@@ -165,7 +165,7 @@ public class PersonAddDataGatherPanel extends JPanel implements ActionListener {
 				}
 				handleResult("Last Name", lname, issueList);
 
-				mname = personAddDataEntryPanel.getMiddleName();
+				mname = clubAddDataEntryPanel.getMiddleName();
 				result = controller.constraintCheck(Controller.MIDDLENAME_OPTIONAL, Controller.MIN_MIDDLENAME_LEN,
 						Controller.MAX_MIDDLENAME_LEN, Controller.MIDDLENAME_REGEX, mname, sb_mname, issueList);
 				if (result == false) {
@@ -173,7 +173,7 @@ public class PersonAddDataGatherPanel extends JPanel implements ActionListener {
 				}
 				handleResult("Middle Name", mname, issueList);
 
-				alias = personAddDataEntryPanel.getAlias();
+				alias = clubAddDataEntryPanel.getAlias();
 				result = controller.constraintCheck(Controller.ALIAS_OPTIONAL, Controller.MIN_ALIAS_LEN,
 						Controller.MAX_ALIAS_LEN, Controller.ALIAS_REGEX, alias, sb_alias, issueList);
 				if (result == false) {
@@ -181,7 +181,7 @@ public class PersonAddDataGatherPanel extends JPanel implements ActionListener {
 				}
 				handleResult("Alias", alias, issueList);
 
-				title = personAddDataEntryPanel.getTitle();
+				title = clubAddDataEntryPanel.getTitle();
 				result = controller.constraintCheck(Controller.TITLE_OPTIONAL, Controller.MIN_TITLE_LEN,
 						Controller.MAX_TITLE_LEN, Controller.TITLE_REGEX, title, sb_title, issueList);
 				if (result == false) {
@@ -199,21 +199,21 @@ public class PersonAddDataGatherPanel extends JPanel implements ActionListener {
 				 * could still be some data constraint/validation/integrity
 				 * issues with the user data.
 				 */
-				person = new Person(sb_fname.toString(), sb_lname.toString(), sb_mname.toString(), sb_alias.toString(),
+				club = new Club(sb_fname.toString(), sb_lname.toString(), sb_mname.toString(), sb_alias.toString(),
 						sb_title.toString());
 
 				int status = 0;
 				try {
 					database.connect();
-					status = database.addPerson(person);
+					status = database.addClub(club);
 				} catch (Exception e) {
 					/*
 					 * There was a problem.
 					 * 
-					 * The Person object was not added to the list. We need to
+					 * The Club object was not added to the list. We need to
 					 * display an Error Dialog and we don't update UI/Jtable.
 					 */
-					JOptionPane.showMessageDialog(null, "Could not add Person to database", "Error Message",
+					JOptionPane.showMessageDialog(null, "Could not add Club to database", "Error Message",
 							JOptionPane.ERROR_MESSAGE);
 					e.printStackTrace();
 					return;
@@ -286,27 +286,27 @@ public class PersonAddDataGatherPanel extends JPanel implements ActionListener {
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.weighty = (double) 0.0;
-		oKResetPanel = new PersonOKResetPanel(personAddDataListener);
-		personAddPanel.add(oKResetPanel, gbc);
+		oKResetPanel = new ClubOKResetPanel(clubAddDataListener);
+		clubAddPanel.add(oKResetPanel, gbc);
 	}
 
-	private void setPersonAddDataListener(PersonAddDataListener personAddListener) {
-		this.personAddDataListener = personAddListener;
+	private void setClubAddDataListener(ClubAddDataListener clubAddListener) {
+		this.clubAddDataListener = clubAddListener;
 	}
 
-	private void setPersonAddResetListener(PersonAddResetListener personAddListener) {
-		this.personAddResetListener = personAddListener;
+	private void setClubAddResetListener(ClubAddResetListener clubAddListener) {
+		this.clubAddResetListener = clubAddListener;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		PersonAddFormEvent ev = new PersonAddFormEvent(this, person);
-		if (personAddFormListener != null) {
-			personAddFormListener.personAddFormEventOccurred(ev);
+		ClubAddFormEvent ev = new ClubAddFormEvent(this, club);
+		if (clubAddFormListener != null) {
+			clubAddFormListener.clubAddFormEventOccurred(ev);
 		}
 	}
 
-	public void setPersonAddFormListener(PersonAddFormListener formListener) {
-		this.personAddFormListener = formListener;
+	public void setClubAddFormListener(ClubAddFormListener formListener) {
+		this.clubAddFormListener = formListener;
 	}
 }

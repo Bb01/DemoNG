@@ -1,5 +1,3 @@
-// Make a new change
-
 package org.bbswd.gui;
 
 import java.awt.BorderLayout;
@@ -29,16 +27,16 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * Display a modal dialog box with details of the application.
- * 
- * <p>
- * The details displayed include:
+ * These details include:
  * 
  * <ol>
  * <li>Copyright</li>
  * <li>Logo</li>
  * <li>URL to web site</li>
  * <li>Version</li>
+ * <li>OK/Close</li>
  * </ol>
+ * 
  * 
  */
 
@@ -48,8 +46,10 @@ public class AboutGUI extends JFrame {
 
 	private static final Logger aboutGUILog = LogManager.getLogger(AboutGUI.class.getName());
 	private JPanel contentPane;
-
-	public static void main() {
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
 		
 		EventQueue.invokeLater(new Runnable() {
 			@Override

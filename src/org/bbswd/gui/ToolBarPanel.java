@@ -11,14 +11,26 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
+/*
+ * This widget is used by the user to select the type of object they wish to operate on.
+ * By default it starts up as the PersonPanel, but that can be changed.
+ */
 public class ToolBarPanel extends JPanel {
 
 	static final long serialVersionUID = 12345L;
+	static enum Panels {
+		PERSON,
+		CLUB,
+		PITCH,
+		FIXTURE;
+	}
+	private Panels defPanel = Panels.CLUB;
 
-	JButton btn_Person;
-	JButton btn_Club;
-	JButton btn_Pitch;
-	JButton btn_Fixture;
+	private JButton btn_Person;
+	private JButton btn_Club;
+	private JButton btn_Pitch;
+	private JButton btn_Fixture;
+	
 
 	public ToolBarPanel() {
 		setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -34,6 +46,7 @@ public class ToolBarPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("Toolbar/Person selected.");
+				defPanel = Panels.PERSON;
 			}
 		});
 
@@ -51,6 +64,7 @@ public class ToolBarPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("Toolbar/Club selected.");
+				defPanel = Panels.CLUB;
 				return;
 			}
 		});
@@ -70,6 +84,7 @@ public class ToolBarPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("Toolbar/Pitch selected.");
+				defPanel = Panels.PITCH;
 				return;
 			}
 		});
@@ -88,6 +103,7 @@ public class ToolBarPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("Toolbar/Fixture selected.");
+				defPanel = Panels.FIXTURE;
 				return;
 			}
 		});
@@ -97,5 +113,10 @@ public class ToolBarPanel extends JPanel {
 		gbc_btn_Fixture.gridx = 3;
 		gbc_btn_Fixture.gridy = 0;
 		add(btn_Fixture, gbc_btn_Fixture);	
+	}
+
+
+	public Panels getDefPanel() {
+		return defPanel;
 	}
 }
