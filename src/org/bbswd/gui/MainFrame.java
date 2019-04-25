@@ -13,6 +13,9 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
