@@ -105,7 +105,7 @@ public class Database {
 		String checkCountSql = "SELECT COUNT(*) AS rowcount FROM person";
 		PreparedStatement checkCountStmt = dBConnection.prepareStatement(checkCountSql);
 
-		String selectPersonSql = "SELECT id, fname, lname, mname, alias, title FROM person;";
+		String selectPersonSql = "SELECT person_id, firstname, lastname, middlename, alias, title FROM person;";
 		PreparedStatement selectPersonStmt = dBConnection.prepareStatement(selectPersonSql);
 
 		System.out.println("Loading...");
@@ -122,10 +122,10 @@ public class Database {
 			System.out.println("Result set:" + myResult);
 			myResult.next();
 			for (int i = 0; i < count; i++) {
-				int id = myResult.getInt("id");
-				String fname = myResult.getString("fname");
-				String lname = myResult.getString("lname");
-				String mname = myResult.getString("mname");
+				int id = myResult.getInt("person_id");
+				String fname = myResult.getString("firstname");
+				String lname = myResult.getString("lastname");
+				String mname = myResult.getString("middlename");
 				String title = myResult.getString("title");
 				String alias = myResult.getString("alias");
 
