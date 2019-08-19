@@ -35,7 +35,9 @@
  * policies to be put in place, but these are not a feature of MySQL.
  */
 DROP DATABASE IF EXISTS `demong`;
+/*
 DROP schema `demong`;
+*/
 
 CREATE SCHEMA `demong`;
 
@@ -74,7 +76,7 @@ CREATE TABLE `person` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 LOAD DATA
 LOCAL INFILE 'C:/GitRepo/DemoNG/demong-testdata-person.csv' 
@@ -123,7 +125,7 @@ CREATE TABLE `club` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 LOAD DATA
 LOCAL INFILE 'C:/GitRepo/DemoNG/demong-testdata-club.csv' 
@@ -139,12 +141,15 @@ club_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY;
 
 /*
  * I'm struggling with this a bit.
- * May need to think about squad/panel....within that there's a team.
+ * The "Team" - plays on the day.
+ * But on different days, different people may play for the same team.
+ * Teams use the club logo and address etc - but they could also have sponsors and sponsor logos etc.
+ * May need to think about squad/panel....within the squad there's a team.
  * But not everyone on a team might play at a fixture - eg substitutions.
  * Eligibility to be on a team, but perhaps not play on the day (eg suspension).
  *
  * Every team is associated with a club, the team will have a name and it
- * it will have a set of players.
+ * It will have a set of players.
  * The players and the teams they can play in are stored in another table.
  */
 CREATE TABLE `team` (
@@ -167,7 +172,7 @@ CREATE TABLE `team` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT 1000 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT 1000 DEFAULT CHARSET=utf8mb4;
 
 LOAD DATA
 LOCAL INFILE 'C:/GitRepo/DemoNG/demong-testdata-team.csv' 
@@ -211,7 +216,7 @@ CREATE TABLE `team_member` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 LOAD DATA
 LOCAL INFILE 'C:/GitRepo/DemoNG/demong-testdata-team-member.csv' 
@@ -220,6 +225,7 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"' 
 LINES TERMINATED BY '\r\n' 
 set created_at = CURRENT_TIMESTAMP;
+
 
 ALTER TABLE team_member ADD PRIMARY KEY (team_id, person_id);
 
@@ -243,7 +249,8 @@ CREATE TABLE `competition` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT 1000 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT 1000 DEFAULT CHARSET=utf8mb4;
+
 
 LOAD DATA
 LOCAL INFILE 'C:/GitRepo/DemoNG/demong-testdata-competition.csv' 
@@ -280,8 +287,9 @@ CREATE TABLE `competition_team` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*
 LOAD DATA
 LOCAL INFILE 'C:/GitRepo/DemoNG/demong-testdata-competition-team.csv' 
 INTO TABLE competition_team 
@@ -289,6 +297,9 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"' 
 LINES TERMINATED BY '\r\n' 
 set created_at = CURRENT_TIMESTAMP;
+
+LOAD DATA LOCAL INFILE 'C:\\GitRepo\\DemoNG\\demong-testdata-competition-team.csv' INTO TABLE competition_team FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n' SET created_at = CURRENT_TIMESTAMP;
+ */
 
 ALTER TABLE competition_team ADD PRIMARY KEY (competition_id, team_id);
 
@@ -317,8 +328,9 @@ CREATE TABLE `pitch` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT 1000 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT 1000 DEFAULT CHARSET=utf8mb4;
 
+/*
 LOAD DATA
 LOCAL INFILE 'C:/GitRepo/DemoNG/demong-testdata-pitch.csv' 
 INTO TABLE pitch
@@ -326,6 +338,9 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"' 
 LINES TERMINATED BY '\r\n' 
 set created_at = CURRENT_TIMESTAMP;
+
+LOAD DATA LOCAL INFILE 'C:\\GitRepo\\DemoNG\\demong-testdata-pitch.csv' INTO TABLE pitch FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n' SET created_at = CURRENT_TIMESTAMP;
+ */
 
 ALTER TABLE pitch
 CHANGE COLUMN pitch_id 
@@ -403,10 +418,10 @@ CREATE TABLE `fixture` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT 1000 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT 1000 DEFAULT CHARSET=utf8mb4;
 
 
-LOAD DATA
+/*LOAD DATA
 LOCAL INFILE 'C:/GitRepo/DemoNG/demong-testdata-fixture.csv' 
 INTO TABLE fixture
 FIELDS TERMINATED BY ',' 
@@ -414,7 +429,31 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n' 
 set created_at = CURRENT_TIMESTAMP;
 
+LOAD DATA LOCAL INFILE 'C:\\GitRepo\\DemoNG\\demong-testdata-fixture.csv' INTO TABLE fixture FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n' SET created_at = CURRENT_TIMESTAMP;
+ */
+
 ALTER TABLE fixture
 CHANGE COLUMN fixture_id 
 fixture_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY;
 
+
+/*
+DELETE from person;
+
+I'm still getting issues with DoB in Person when I specify 1937 instead of 1 1 1937/..it warns that the DoB is truncated.
+Also having issues with truncation for created at, deleted at & updated at.
+Also, I get this a lot: Warning (Code 1062): Duplicate entry '1201' for key 'PRIMARY'
+Solving these issues will I hope lead to better setup script and clear the way for more progress.
+
+
+LOAD DATA LOCAL INFILE 'C:\\GitRepo\\DemoNG\\demong-testdata-person.csv' INTO TABLE person FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n' SET created_at = CURRENT_TIMESTAMP;
+LOAD DATA LOCAL INFILE 'C:\\GitRepo\\DemoNG\\demong-testdata-club.csv' INTO TABLE club FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n' SET created_at = CURRENT_TIMESTAMP;
+LOAD DATA LOCAL INFILE 'C:\\GitRepo\\DemoNG\\demong-testdata-team.csv' INTO TABLE team FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n' SET created_at = CURRENT_TIMESTAMP;
+LOAD DATA LOCAL INFILE 'C:\\GitRepo\\DemoNG\\demong-testdata-team-member.csv' INTO TABLE team_member FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n' SET created_at = CURRENT_TIMESTAMP;
+LOAD DATA LOCAL INFILE 'C:\\GitRepo\\DemoNG\\demong-testdata-competition.csv' INTO TABLE competition FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n' SET created_at = CURRENT_TIMESTAMP;
+LOAD DATA LOCAL INFILE 'C:\\GitRepo\\DemoNG\\demong-testdata-competition-team.csv' INTO TABLE competition_team FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n' SET created_at = CURRENT_TIMESTAMP;
+LOAD DATA LOCAL INFILE 'C:\\GitRepo\\DemoNG\\demong-testdata-pitch.csv' INTO TABLE pitch FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n' SET created_at = CURRENT_TIMESTAMP;
+LOAD DATA LOCAL INFILE 'C:\\GitRepo\\DemoNG\\demong-testdata-fixture.csv' INTO TABLE fixture FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n' SET created_at = CURRENT_TIMESTAMP;
+ */
+ 
+ 

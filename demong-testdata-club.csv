@@ -1,14 +1,14 @@
-1000,Liverpool,,./data/images/club/Liverpool.jpg,Anfield,Anfield Road,Merseyside,Liverpool,United Kingdom,L4 0TH,1892-01-01,20190101,Tom Werner,1161
-1001,Fulham,,./data/images/club/Fulham.jpg,Craven Cottage,Stevenage Rd,Fulham,London,United Kingdom,SW6 6HH,1879-01-01,20190101,Shahid Khan,1162
-1002,Arsenal,,./data/images/club/Arsenal.jpg,Emirates Stadium,Hornsey Road,Hollowoy,London,United Kingdom,N7 7AJ,1886-01-01,20190101,Sir Chips Keswick,1163
-1003,Everton,,./data/images/club/Everton.jpg,Goodison Park,Goodison Road,Walton,Liverpool,United Kingdom,L4 4EL,1878-01-01,20190101,Bill Kenwright,1164
-1004,West Ham,,./data/images/club/WestHam.jpg,Queen Elizabeth Olympic Park,,Stratford,London,United Kingdom,E20 1EJ,1895-01-01,20190101,,1165
-1005,Manchester United,,./data/images/club/manchesterUnited.jpg,Old Trafford,Sir Matt Busby Way,Old Trafford,Greater Manchester,United Kingdom,M16 0RA,1878-01-01,20190101,Joel and Avram Glazer,1166
-1006,Newcastle,,./data/images/club/Newcastle.jpg,St James' Park,Strawberry Place,,Newcastle upon Tyne,United Kingdom,NE1 4ST,1892-01-01,20190101,Mike Ashley,1167
-1007,Crystal Palace,,./data/images/club/CrystalPalace.jpg,Selhurst Park,Whitehorse Lane,Selhurst,London,United Kingdom,SE25 6PU,1905-01-01,20190101,Steve Parish,1168
-1008,Chelsea,,./data/images/club/Chelsea.jpg,Stamford Bridge,Fulham Road,Fulham,London,United Kingdom,SW6 1HS,1905-01-01,20190101,Roman Abramovich,1169
-1009,Tottenham Hotspur,,./data/images/club/TottenhamHotspur.jpg,Tottenham Hotspur Stadium,782 High Rd,Tottenham,London,United Kingdom,N17 0BX,1882-01-01,20190101,Daniel Levy,1170
-1010,Perth Glory,,./data/images/club/PerthGlory.jpg,HBF Park/NIB Stadium,310 Pier St,Perth,WA,Australia,6000,1996-01-01,20190101,Tony Sage,1171
-1011,Drumcondra FC,,./data/images/club/DrumcondraFC.jpg,Clonturk Park,Richmond Road,Drumcondra,Dublin,Ireland,D03 CA37,1924-01-01,20190101,,1172
-1012,St Patrick's Athletic,,./data/images/club/StPatricksAthletic.jpg,Richmond Park,Emmet Road,Inchicore,Dublin,Ireland,D08 A0C8,1929-01-01,20190101,,1173
-1013,Shelbourne United FC,,./data/images/club/ShelbourneUnited.jpg,Tolka Park,70-108 Richmond Road,Drumcondra,Dublin,Ireland,D03 A6K6,1895-01-01,20190101,,1174
+1000,Liverpool,,./data/images/club/Liverpool.jpg,Anfield,Anfield Road,Merseyside,Liverpool,United Kingdom,L4 0TH,1892-01-01,20190101,Tom Werner,1161,0,0,0,0000-00-00 00:00:00,0000-00-00 00:00:00,0000-00-00 00:00:00
+1001,Fulham,,./data/images/club/Fulham.jpg,Craven Cottage,Stevenage Rd,Fulham,London,United Kingdom,SW6 6HH,1879-01-01,20190101,Shahid Khan,1162,0,0,0,0000-00-00 00:00:00,0000-00-00 00:00:00,0000-00-00 00:00:00
+1002,Arsenal,,./data/images/club/Arsenal.jpg,Emirates Stadium,Hornsey Road,Hollowoy,London,United Kingdom,N7 7AJ,1886-01-01,20190101,Sir Chips Keswick,1163,0,0,0,0000-00-00 00:00:00,0000-00-00 00:00:00,0000-00-00 00:00:00
+1003,Everton,,./data/images/club/Everton.jpg,Goodison Park,Goodison Road,Walton,Liverpool,United Kingdom,L4 4EL,1878-01-01,20190101,Bill Kenwright,1164,0,0,0,0000-00-00 00:00:00,0000-00-00 00:00:00,0000-00-00 00:00:00
+1004,West Ham,,./data/images/club/WestHam.jpg,Queen Elizabeth Olympic Park,,Stratford,London,United Kingdom,E20 1EJ,1895-01-01,20190101,,1165,0,0,0,0000-00-00 00:00:00,0000-00-00 00:00:00,0000-00-00 00:00:00
+1005,Manchester United,,./data/images/club/manchesterUnited.jpg,Old Trafford,Sir Matt Busby Way,Old Trafford,Greater Manchester,United Kingdom,M16 0RA,1878-01-01,20190101,Joel and Avram Glazer,1166,0,0,0,0000-00-00 00:00:00,0000-00-00 00:00:00,0000-00-00 00:00:00
+1006,Newcastle,,./data/images/club/Newcastle.jpg,St James' Park,Strawberry Place,,Newcastle upon Tyne,United Kingdom,NE1 4ST,1892-01-01,20190101,Mike Ashley,1167,0,0,0,0000-00-00 00:00:00,0000-00-00 00:00:00,0000-00-00 00:00:00
+1007,Crystal Palace,,./data/images/club/CrystalPalace.jpg,Selhurst Park,Whitehorse Lane,Selhurst,London,United Kingdom,SE25 6PU,1905-01-01,20190101,Steve Parish,1168,0,0,0,0000-00-00 00:00:00,0000-00-00 00:00:00,0000-00-00 00:00:00
+1008,Chelsea,,./data/images/club/Chelsea.jpg,Stamford Bridge,Fulham Road,Fulham,London,United Kingdom,SW6 1HS,1905-01-01,20190101,Roman Abramovich,1169,0,0,0,0000-00-00 00:00:00,0000-00-00 00:00:00,0000-00-00 00:00:00
+1009,Tottenham Hotspur,,./data/images/club/TottenhamHotspur.jpg,Tottenham Hotspur Stadium,782 High Rd,Tottenham,London,United Kingdom,N17 0BX,1882-01-01,20190101,Daniel Levy,1170,0,0,0,0000-00-00 00:00:00,0000-00-00 00:00:00,0000-00-00 00:00:00
+1010,Perth Glory,,./data/images/club/PerthGlory.jpg,HBF Park/NIB Stadium,310 Pier St,Perth,WA,Australia,6000,1996-01-01,20190101,Tony Sage,1171,0,0,0,0000-00-00 00:00:00,0000-00-00 00:00:00,0000-00-00 00:00:00
+1011,Drumcondra FC,,./data/images/club/DrumcondraFC.jpg,Clonturk Park,Richmond Road,Drumcondra,Dublin,Ireland,D03 CA37,1924-01-01,20190101,,1172,0,0,0,0000-00-00 00:00:00,0000-00-00 00:00:00,0000-00-00 00:00:00
+1012,St Patrick's Athletic,,./data/images/club/StPatricksAthletic.jpg,Richmond Park,Emmet Road,Inchicore,Dublin,Ireland,D08 A0C8,1929-01-01,20190101,,1173,0,0,0,0000-00-00 00:00:00,0000-00-00 00:00:00,0000-00-00 00:00:00
+1013,Shelbourne United FC,,./data/images/club/ShelbourneUnited.jpg,Tolka Park,70-108 Richmond Road,Drumcondra,Dublin,Ireland,D03 A6K6,1895-01-01,20190101,,1174,0,0,0,0000-00-00 00:00:00,0000-00-00 00:00:00,0000-00-00 00:00:00
