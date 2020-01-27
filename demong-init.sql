@@ -90,6 +90,27 @@ ALTER TABLE person
 CHANGE COLUMN person_id 
 person_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY;
 
+/*
+ * Seems that inm going from MySQL to 5 to 8 the code above my fail.
+ * One must now place the files to be loaded in the folder for the SERVER:
+ * c:\ProgamData\\MySQL\\MySQL Server 8.0\\Uploads\\
+ * But MySQL WorkBench is still broken (IMHO)....so use the Command Line version in Powershell.
+ *
+ * mysql --local_infile=1 -uroot -p<password for root> demong --show-warnings
+ * SHOW VARIABLES LIKE "local_infile";
+ * SET GLOBAL local_infile=1;
+ * SHOW VARIABLES LIKE "secure_file_priv";
+ * LOAD DATA LOCAL INFILE 'C:/GitRepo/DemoNG/demong-testdata-person.csv' INTO TABLE PERSON;
+ * or
+ * LOAD DATA LOCAL INFILE 'C:\\GitRepo\\DemoNG\\demong-testdata-person.csv' INTO TABLE PERSON;
+ * will work as a workaround.
+ *
+ * Here's the full version:
+ * LOAD DATA LOCAL INFILE "c:/ProgramData/MySQL//MySQL Server 8.0/Uploads/demong-testdata-person.csv" INTO TABLE PERSON;
+ * LOAD DATA LOCAL INFILE 'C:\\GitRepo\\DemoNG\\demong-testdata-person.csv' INTO TABLE person FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n' SET created_at = CURRENT_TIMESTAMP;
+ * LOAD DATA LOCAL INFILE 'C:/ProgramData/MySQL//MySQL Server 8.0/Uploads/demong-testdata-person.csv' INTO TABLE person FIELDS TERMINATED 
+ */
+
 
 /*
  * Every team must be associated with a club.
